@@ -1,0 +1,16 @@
+flowchart LR
+    APP["App Nexa<br/>Flutter"]
+    TOTEM["Totem de check-in<br/>ESP32-S3"]
+    API["API Nexa<br/>Spring Boot"]
+    GESTAO["API de gestão<br/>.NET"]
+    DB[("Oracle<br/>unidades, filas e usuários")]
+    EXT["ViaCEP e<br/>Google Geocoding"]
+    AZ["Azure VM<br/>Docker Compose"]
+
+    APP -->|HTTPS + JWT| API
+    TOTEM -->|HTTPS| API
+    API --> DB
+    GESTAO --> DB
+    API --> EXT
+    AZ -.->|hospeda| API
+    AZ -.->|hospeda| DB
